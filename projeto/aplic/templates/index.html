@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina Inicial</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
+    div class="container">
+  <ul class="nav bg-info">
+    <li class="nav-item">
+      <a class="nav-link link-light" href="/">Pagina Inicial</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link link-light" href="/admin">Login</a>
+    </li>
+  </ul>
+  {% block content %}
+  {% endblock %}
+</div>
+    
+</body>
+</html>
