@@ -63,3 +63,14 @@ class Funcionario(Pessoa):
 
     def __str__(self):
         return f"{self.nome} / {self.cargo}"
+
+class Cartao(models.Model):
+    numero = models.CharField(_('Número Cartão'), max_length=12)
+    senha = models.CharField(_('Senha Cartão'), max_length=200)
+
+    class Meta:
+        verbose_name = _('Cartão')
+        verbose_name_plural = _('Cartões')
+    
+    def __str__(self):
+        return f"{self.numero}"
