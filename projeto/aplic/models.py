@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 class Pessoa(models.Model):
+
     
     nome = models.CharField(_("Nome"), blank=False, max_length=50,)
     cpf = models.CharField(_("cpf"), blank=False, max_length=11,)
@@ -33,8 +34,18 @@ class Pessoa(models.Model):
     def __str__(self):
         return self.nome
 
+class Cartao(models.Model):
+    numero = models.CharField(_('Número Cartão'), max_length=12)
+    senha = models.CharField(_('Senha Cartão'), max_length=200)
+
+    class Meta:
+        verbose_name = _('Cartão')
+        verbose_name_plural = _('Cartões')
+    
+    def __str__(self):
+        return f"{self.numero}"
 class Cliente(Pessoa):
-    cartao = models.CharField(_('Cartão'), max_length=20)
+    cartao = models.ForeignKey(Cartao, null=True, on_delete= models.SET_NULL)
 
     class Meta:
         verbose_name = _('Cliente')
@@ -43,7 +54,7 @@ class Cliente(Pessoa):
 
 class Cargo(models.Model):
     nome_cargo = models.CharField(_('Nome Cargo'), max_length=100)
-    salario = models.DecimalField(_("Salario"), blank=False, max_digits=12, decimal_places=3)
+    carga_horaria = models.DecimalField(_("Carga horária"), blank=False, max_digits=12, decimal_places=3)
     comissao = models.DecimalField(_("Comissão"), blank=False,max_digits=4, decimal_places=3)
 
 
@@ -56,6 +67,7 @@ class Cargo(models.Model):
         return self.nome_cargo
 class Funcionario(Pessoa):
     cargo = models.ForeignKey(Cargo, null=True, on_delete= models.SET_NULL)
+    salario = models.DecimalField(_("Salario"), blank=False, max_digits=6, decimal_places=3)
 
     class Meta:
         verbose_name = _('Funcionario')
@@ -63,14 +75,3 @@ class Funcionario(Pessoa):
 
     def __str__(self):
         return f"{self.nome} / {self.cargo}"
-
-class Cartao(models.Model):
-    numero = models.CharField(_('Número Cartão'), max_length=12)
-    senha = models.CharField(_('Senha Cartão'), max_length=200)
-
-    class Meta:
-        verbose_name = _('Cartão')
-        verbose_name_plural = _('Cartões')
-    
-    def __str__(self):
-        return f"{self.numero}"
