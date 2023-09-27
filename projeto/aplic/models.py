@@ -10,20 +10,6 @@ class Pessoa(models.Model):
     senha = models.CharField(_('Senha'), blank=False, max_length=100)
     login = models.CharField(_('Login'), blank=False, max_length=100)
     
-    def alterar_nome(self):
-        novo_nome = models.CharField(_("Nome"), blank=False, max_length=50,)
-        self.nome = novo_nome
-    
-    def alterar_login(self):
-        novo_login = models.CharField(_('Login'), blank=False, max_length=100)
-        self.login = novo_login
-        
-    def alter_senha(self):
-        nova_senha = models.CharField(_('Senha'), blank=False, max_length=100)
-        self.senha = nova_senha
-        
-    def adicionar_telefone(self):
-        novo_telefone = models.IntegerField(_('Telefone'), blank=True,)
 
     class Meta:    
         abstract = True
@@ -54,7 +40,7 @@ class Cliente(Pessoa):
 
 class Cargo(models.Model):
     nome_cargo = models.CharField(_('Nome Cargo'), max_length=100)
-    carga_horaria = models.DecimalField(_("Carga horária"), blank=False, max_digits=12, decimal_places=3)
+    carga_horaria = models.DecimalField(_("Carga horária"), null=True,blank=False, max_digits=12, decimal_places=3)
     comissao = models.DecimalField(_("Comissão"), blank=False,max_digits=4, decimal_places=3)
 
 
@@ -67,7 +53,7 @@ class Cargo(models.Model):
         return self.nome_cargo
 class Funcionario(Pessoa):
     cargo = models.ForeignKey(Cargo, null=True, on_delete= models.SET_NULL)
-    salario = models.DecimalField(_("Salario"), blank=False, max_digits=6, decimal_places=3)
+    salario = models.DecimalField(_("Salario"), null=True, blank=False, max_digits=8, decimal_places=2)
 
     class Meta:
         verbose_name = _('Funcionario')
