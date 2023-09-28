@@ -83,7 +83,7 @@ class Produto(models.Model):
     peso = models.DecimalField(_("Peso"), null=True, blank=False, max_digits=8, decimal_places=2)
     marca = models.CharField(_("Nome da Marca"), blank=False, max_length=50,)
     estoque = models.IntegerField(_('Número Cartão'))
-    nome_produto =  models.CharField(_("Nome da Marca"), blank=False, max_length=50,)
+    nome_produto =  models.CharField(_("Nome do Produto"), blank=False, max_length=50,)
     
     class Meta:
         verbose_name = _('Produto')
@@ -92,3 +92,10 @@ class Produto(models.Model):
     def __str__(self):
         return f"{self.nome_produto} {self.preco}R$"
 
+class Fornecedor(models.Model):
+    nome = models.CharField(_('Nome'), max_length=12)
+    cnpj = models.CharField(_('CNPJ'), max_length=14)
+
+    class Meta:
+        verbose_name = _('Fornecedor')
+        verbose_name_plural = _('Fornecedores')
