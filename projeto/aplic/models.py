@@ -32,7 +32,7 @@ class Cartao(models.Model):
         return f"{self.numero}"
     
 class Endereco(models.Model):
-    cep = models.CharField(_('CEP'), max_length=200)
+    cep = models.CharField(_('CEP'), max_length=8)
     logradouro = models.CharField(_('Logradouro'), max_length=200)
     complemento = models.CharField(_('Complemento'), max_length=200)
     numero = models.CharField(_('Número '), max_length=4)
@@ -40,7 +40,7 @@ class Endereco(models.Model):
     cidade = models.CharField(_('Cidade'), max_length=200)
     pais = models.CharField(_('País'), max_length=200)
     utc = models.CharField(_('UTC'), max_length=200)
-    
+
     class Meta:
         verbose_name = _('Endereço')
         verbose_name_plural = _('Endereços')
