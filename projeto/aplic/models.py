@@ -61,3 +61,18 @@ class Funcionario(Pessoa):
 
     def __str__(self):
         return f"{self.nome} / {self.cargo}"
+
+class Produto(models.Model):
+    preco = models.DecimalField(_("Preço"), null=True, blank=False, max_digits=8, decimal_places=2)
+    peso = models.DecimalField(_("Peso"), null=True, blank=False, max_digits=8, decimal_places=2)
+    marca = models.CharField(_("Nome da Marca"), blank=False, max_length=50,)
+    estoque = models.IntegerField(_('Número Cartão'))
+    nome_produto =  models.CharField(_("Nome da Marca"), blank=False, max_length=50,)
+    
+    class Meta:
+        verbose_name = _('Produto')
+        verbose_name_plural = _('Produtos')
+
+    def __str__(self):
+        return f"{self.nome_produto} {self.preco}R$"
+
