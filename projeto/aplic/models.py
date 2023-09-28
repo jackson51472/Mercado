@@ -30,6 +30,22 @@ class Cartao(models.Model):
     
     def __str__(self):
         return f"{self.numero}"
+    
+class Endereco(models.Model):
+    cep = models.CharField(_('CEP'), max_length=200)
+    logradouro = models.CharField(_('Logradouro'), max_length=200)
+    complemento = models.CharField(_('Complemento'), max_length=200)
+    numero = models.CharField(_('Número '), max_length=4)
+    bairro = models.CharField(_('Bairro'), max_length=200)
+    cidade = models.CharField(_('Cidade'), max_length=200)
+    pais = models.CharField(_('País'), max_length=200)
+    utc = models.CharField(_('UTC'), max_length=200)
+    
+    class Meta:
+        verbose_name = _('Endereço')
+        verbose_name_plural = _('Endereços')
+    
+
 class Cliente(Pessoa):
     cartao = models.ForeignKey(Cartao, null=True, on_delete= models.SET_NULL)
 

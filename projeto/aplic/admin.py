@@ -1,5 +1,5 @@
 from django.contrib import admin
-from aplic.models import Cliente, Cargo, Funcionario, Cartao,Produto
+from aplic.models import Cliente, Cargo, Funcionario, Cartao,Produto, Endereco
 @admin.register(Cliente)
 class ClienteAdmin(admin.ModelAdmin):
     list_display = ['cartao','nome','cpf','login','senha','telefone']
@@ -19,3 +19,7 @@ class CartaoAdmin(admin.ModelAdmin):
 @admin.register(Produto)
 class ProdutoAdmin(admin.ModelAdmin):
     list_display = ("nome_produto", "marca", "estoque", "peso", "preco")
+
+@admin.register(Endereco)
+class ProdutoAdmin(admin.ModelAdmin):
+    list_display = ("cep", "logradouro", "complemento", "numero", "bairro", "cidade", "pais", "utc")
