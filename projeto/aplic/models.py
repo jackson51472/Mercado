@@ -5,10 +5,10 @@ class Pessoa(models.Model):
 
     
     nome = models.CharField(_("Nome"), blank=False, max_length=50,)
-    cpf = models.CharField(_("cpf"), blank=False, max_length=11,)
-    telefone = models.IntegerField(_('Telefone'), blank=True,)
+    cpf = models.CharField(_("cpf"), blank=False, max_length=11, unique=True)
+    telefone = models.IntegerField(_('Telefone'), blank=True,null=True)
     senha = models.CharField(_('Senha'), blank=False, max_length=100)
-    login = models.CharField(_('Login'), blank=False, max_length=100)
+    login = models.CharField(_('Login'), blank=False, max_length=100, unique=True)
     
 
     class Meta:    
@@ -21,7 +21,7 @@ class Pessoa(models.Model):
         return self.nome
 
 class Cartao(models.Model):
-    numero = models.CharField(_('Número Cartão'), max_length=12)
+    numero = models.CharField(_('Número Cartão'), max_length=12,unique=True)
     senha = models.CharField(_('Senha Cartão'), max_length=200)
 
     class Meta:
@@ -83,7 +83,7 @@ class Produto(models.Model):
     peso = models.DecimalField(_("Peso"), null=True, blank=False, max_digits=8, decimal_places=2)
     marca = models.CharField(_("Nome da Marca"), blank=False, max_length=50,)
     estoque = models.IntegerField(_('Número Cartão'))
-    nome_produto =  models.CharField(_("Nome da Marca"), blank=False, max_length=50,)
+    nome_produto =  models.CharField(_("Nome da Marca"), blank=False, max_length=50, unique=True,)
     
     class Meta:
         verbose_name = _('Produto')
