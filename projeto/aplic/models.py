@@ -86,10 +86,12 @@ class Pedido(models.Model):
 
     FEITO = "Feito"
     FINALIZADO = "Finalizado"
+    ANDAMENTO = "Andamento"
 
     YEAR_IN_SCHOOL_CHOICES = [
         (FEITO, "Feito"),
         (FINALIZADO,"Finalizado"),
+        (ANDAMENTO,"Andamento"),
        
     ]
 
@@ -108,6 +110,10 @@ class ItemPedido(models.Model):
     item = models.ForeignKey(Produto, blank=True, null=True, on_delete= models.SET_NULL)
     quantidade = models.IntegerField(_("Quantidade Pedida"))
     pedido = models.ForeignKey(Pedido , blank=True, null=True, on_delete= models.SET_NULL)
+    
+
+    def valorTotal(self):
+        return self.quantidade * self.item.preco
 
     class Meta:
         verbose_name = _('Item Pedido')
@@ -134,11 +140,11 @@ class Endereco(models.Model):
     cep = models.IntegerField(_('CEP'),)
     logradouro = models.CharField(_('Logradouro'), max_length=200)
     complemento = models.CharField(_('Complemento'), max_length=200)
-    numero = models.IntegerField(_('Número '), )
+    numero = models.IntegerField(_('Número '),)
     bairro = models.CharField(_('Bairro'), max_length=200)
     cidade = models.CharField(_('Cidade'), max_length=200)
     pais = models.CharField(_('País'), max_length=200)
-    utc = models.CharField(_('UTC'), max_length=200)
+    uf = models.CharField(_('UF'), max_length=200, blank=False, default=None)
     endereco_fornecedor = models.ForeignKey(Fornecedor, blank=False, null=True, on_delete= models.SET_NULL)
 
 
