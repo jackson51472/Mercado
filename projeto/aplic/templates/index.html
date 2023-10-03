@@ -1,26 +1,78 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagina Inicial</title>
+    <link rel="shortcut icon" href="{% static 'ico/logo.ico' %}" type="image/x-icon">
+    <title>Double J Market</title>
     {% load bootstrap5 %}
     {% bootstrap_css %}
     {% bootstrap_javascript %}
+    <style>
+       .double {
+            color: rgb(0, 183, 255);
+        }
+
+        .market {
+            color: green;
+        }
+         .title {
+            text-align: center;
+            line-height: 0.8; /* Espaçamento entre as linhas */
+        }
+    body{
+    background-color: aqua;
+          }
+
+    
+    </style>
 </head>
 <body>
   <div class="container">
-  <ul class="nav bg-info">
-    <li class="nav-item">
-      <a class="nav-link link-light" href="/">Pagina Inicial</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link link-light" href="/admin">Login</a>
-    </li>
-  </ul>
-  {% block content %}
-  {% endblock %}
-</div>
+    <ul class="nav bg-info">
+      <li class="nav-item">
+        <a class="nav-link link-light" href="/">Pagina Inicial</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link link-light" href="/admin">Login</a>
+      </li>
+    </ul>
+    
+    <!-- Adicione o seu conteúdo personalizado aqui -->
+    <header>
+      <header>
+            <!-- Use as classes criadas para aplicar cores diferentes -->
+            <h1 class="title"> <img src="{% static 'img/logo.png' %}" alt="Logo"></h1>
+              
+        </header>
+    </header>
+
+    <section class="destaques">
+        <h2>Produtos em Destaque</h2>
+        <div class="produto">
+            <img src="produto1.jpg" alt="Produto 1">
+            <h3>Produto 1</h3>
+            <p>Descrição do Produto 1.</p>
+            <p class="preco">R$ 19,99</p>
+        </div>
+        <!-- Adicione mais produtos em destaque aqui -->
+    </section>
+
+    <section class="ofertas">
+        <h2>Ofertas Especiais</h2>
+        <div class="produto">
+            <img src="produto2.jpg" alt="Produto 2">
+            <h3>Produto 2</h3>
+            <p>Descrição do Produto 2.</p>
+            <p class="preco">R$ 14,99</p>
+        </div>
+        <!-- Adicione mais ofertas especiais aqui -->
+    </section>
+
+    <!-- Fim do conteúdo personalizado -->
+
+  </div>
     
 </body>
 </html>
