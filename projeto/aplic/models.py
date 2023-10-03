@@ -34,10 +34,10 @@ class Cartao(models.Model):
     
 class Endereco(models.Model):
     
-    cep = models.CharField(_('CEP'), max_length=8)
+    cep = models.IntegerField(_('CEP'),)
     logradouro = models.CharField(_('Logradouro'), max_length=200)
     complemento = models.CharField(_('Complemento'), max_length=200)
-    numero = models.CharField(_('Número '), max_length=4)
+    numero = models.IntegerField(_('Número '), )
     bairro = models.CharField(_('Bairro'), max_length=200)
     cidade = models.CharField(_('Cidade'), max_length=200)
     pais = models.CharField(_('País'), max_length=200)
@@ -108,3 +108,38 @@ class Produto(models.Model):
 
     def __str__(self):
         return f"{self.nome_produto} / R${self.preco}"
+
+class Pedido(models.Model):
+    data_pedido = models.DateTimeField(_("Data do Pedido"), blank=False)
+
+    FEITO = "Feito"
+    FINALIZADO = "Finalizado"
+
+    YEAR_IN_SCHOOL_CHOICES = [
+        (FEITO, "Feito"),
+        (FINALIZADO,"Finalizado"),
+       
+    ]
+
+    status = models.CharField(
+        choices=YEAR_IN_SCHOOL_CHOICES,
+    )
+
+    class Meta:
+        verbose_name = _('Pedido')
+        verbose_name_plural = _('Pedidos')
+    
+    def __str__(self):
+        return f"{self.item} / {self.data_pedido}"
+
+class ItemPedido(models.Model):
+    item = models.ForeignKey(Produto, blank=True, null=True, on_delete= models.DO_NOTHING)
+    quantidade = models.IntegerField(_("Quantidade Pedida"))
+    pedido = models.ForeignKey(Pedido , blank=True, null=True, on_delete= models.DO_NOTHING)
+
+    class Meta:
+        verbose_name = _('Item Pedido')
+        verbose_name_plural = _('Items Pedido')
+
+    def __str__(self):
+        return f"{self.item} / {self.valor}"

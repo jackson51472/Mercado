@@ -1,5 +1,6 @@
 from django.contrib import admin
-from aplic.models import Cliente, Cargo, Funcionario, Cartao,Produto, Endereco, Fornecedor
+from aplic.models import Cliente, Cargo, Funcionario, Cartao, ItemPedido, Pedido, Produto, Endereco, Fornecedor
+
 @admin.register(Cliente)
 class ClienteAdmin(admin.ModelAdmin):
     list_display = ["nome", 'cpf', 'login', 'senha', 'cartao', 'telefone']
@@ -27,3 +28,11 @@ class EnderecoAdmin(admin.ModelAdmin):
 @admin.register(Fornecedor)
 class FornecedorAdmin(admin.ModelAdmin):
     list_display = ("nome","cnpj",)
+
+@admin.register(Pedido)
+class PedidoAdmin(admin.ModelAdmin):
+    list_display = ("data_pedido", "status")
+
+@admin.register(ItemPedido)
+class ItemPedidoAdmin(admin.ModelAdmin):
+    list_display = ("item", "quantidade", "pedido")
