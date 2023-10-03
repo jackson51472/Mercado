@@ -130,16 +130,16 @@ class Pedido(models.Model):
         verbose_name_plural = _('Pedidos')
     
     def __str__(self):
-        return f"{self.item} / {self.data_pedido}"
+        return f"{self.data_pedido} / {self.status}"
 
 class ItemPedido(models.Model):
-    item = models.ForeignKey(Produto, blank=True, null=True, on_delete= models.DO_NOTHING)
+    item = models.ForeignKey(Produto, blank=True, null=True, on_delete= models.SET_NULL)
     quantidade = models.IntegerField(_("Quantidade Pedida"))
-    pedido = models.ForeignKey(Pedido , blank=True, null=True, on_delete= models.DO_NOTHING)
+    pedido = models.ForeignKey(Pedido , blank=True, null=True, on_delete= models.SET_NULL)
 
     class Meta:
         verbose_name = _('Item Pedido')
         verbose_name_plural = _('Items Pedido')
 
     def __str__(self):
-        return f"{self.item} / {self.valor}"
+        return f"Produto {self.item} / Quantidade: {self.quantidade}"
