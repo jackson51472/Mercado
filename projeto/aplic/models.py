@@ -18,38 +18,10 @@ class Pessoa(models.Model):
         ordering = ['id']
 
     def __str__(self):
-        return self.nome
-    
-class Cartao(models.Model):
-
-    numero = models.CharField(_('Número Cartão'), max_length=12,unique=True)
-    senha = models.CharField(_('Senha Cartão'), max_length=200)
-
-    class Meta:
-        verbose_name = _('Cartão')
-        verbose_name_plural = _('Cartões')
-    
-    def __str__(self):
-        return f"{self.numero}"    
-    
-class Endereco(models.Model):
-    
-    cep = models.IntegerField(_('CEP'),)
-    logradouro = models.CharField(_('Logradouro'), max_length=200)
-    complemento = models.CharField(_('Complemento'), max_length=200)
-    numero = models.IntegerField(_('Número '), )
-    bairro = models.CharField(_('Bairro'), max_length=200)
-    cidade = models.CharField(_('Cidade'), max_length=200)
-    pais = models.CharField(_('País'), max_length=200)
-    utc = models.CharField(_('UTC'), max_length=200)
-
-    class Meta:
-        verbose_name = _('Endereço')
-        verbose_name_plural = _('Endereços')
+        return self.nome 
 
 class Cliente(Pessoa):
 
-    cartao = models.ForeignKey(Cartao, null=True, blank=True, on_delete= models.SET_NULL)
 
     class Meta:
         verbose_name = _('Cliente')
@@ -143,3 +115,33 @@ class ItemPedido(models.Model):
 
     def __str__(self):
         return f"Produto {self.item} / Quantidade: {self.quantidade}"
+    
+class Cartao(models.Model):
+
+    numero = models.CharField(_('Número Cartão'), max_length=12,unique=True)
+    senha = models.CharField(_('Senha Cartão'), max_length=200)  
+    pessoa_Dona = models.ForeignKey(Cliente, blank=False, null=True, on_delete= models.SET_NULL)
+
+    class Meta:
+        verbose_name = _('Cartão')
+        verbose_name_plural = _('Cartões')
+    
+    def __str__(self):
+        return f"{self.numero}" 
+
+class Endereco(models.Model):
+    
+    cep = models.IntegerField(_('CEP'),)
+    logradouro = models.CharField(_('Logradouro'), max_length=200)
+    complemento = models.CharField(_('Complemento'), max_length=200)
+    numero = models.IntegerField(_('Número '), )
+    bairro = models.CharField(_('Bairro'), max_length=200)
+    cidade = models.CharField(_('Cidade'), max_length=200)
+    pais = models.CharField(_('País'), max_length=200)
+    utc = models.CharField(_('UTC'), max_length=200)
+    endereco_fornecedor = models.ForeignKey(Fornecedor, blank=False, null=True, on_delete= models.SET_NULL)
+
+
+    class Meta:
+        verbose_name = _('Endereço')
+        verbose_name_plural = _('Endereços')

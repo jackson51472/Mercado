@@ -15,7 +15,7 @@ class FuncionarioAdmin(admin.ModelAdmin):
 
 @admin.register(Cartao)
 class CartaoAdmin(admin.ModelAdmin):
-    list_display = ['numero','senha']
+    list_display = ['numero','senha',"pessoa_Dona"]
 
 @admin.register(Produto)
 class ProdutoAdmin(admin.ModelAdmin):
@@ -23,7 +23,7 @@ class ProdutoAdmin(admin.ModelAdmin):
 
 @admin.register(Endereco)
 class EnderecoAdmin(admin.ModelAdmin):
-    list_display = ("cidade", "cep", "logradouro", "bairro", "numero", "complemento",  "pais", "utc")
+    list_display = ("endereco_fornecedor","cidade", "cep", "logradouro", "bairro", "numero", "complemento",  "pais", "utc")
 
 @admin.register(Fornecedor)
 class FornecedorAdmin(admin.ModelAdmin):
