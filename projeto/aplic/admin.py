@@ -31,7 +31,7 @@ class FornecedorAdmin(admin.ModelAdmin):
 
 @admin.register(Pedido)
 class PedidoAdmin(admin.ModelAdmin):
-    list_display = ("data_pedido", "status")
+    list_display = ("data_pedido", "status", "funcionario_pedido", "cliente_pedido")
 
 @admin.register(ItemPedido)
 class ItemPedidoAdmin(admin.ModelAdmin):

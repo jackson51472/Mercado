@@ -83,7 +83,8 @@ class Produto(models.Model):
 
 class Pedido(models.Model):
     data_pedido = models.DateTimeField(_("Data do Pedido"), blank=False)
-
+    funcionario_pedido = models.ForeignKey(Funcionario, blank=False, null=True, on_delete= models.SET_NULL)
+    cliente_pedido = models.ForeignKey(Cliente, blank=False, null=True, on_delete= models.SET_NULL)
     FEITO = "Feito"
     FINALIZADO = "Finalizado"
     ANDAMENTO = "Andamento"
@@ -94,10 +95,11 @@ class Pedido(models.Model):
         (ANDAMENTO,"Andamento"),
        
     ]
-
     status = models.CharField(
         choices=YEAR_IN_SCHOOL_CHOICES,
     )
+
+
 
     class Meta:
         verbose_name = _('Pedido')
@@ -105,6 +107,7 @@ class Pedido(models.Model):
     
     def __str__(self):
         return f"{self.data_pedido} / {self.status}"
+
 
 class ItemPedido(models.Model):
     item = models.ForeignKey(Produto, blank=True, null=True, on_delete= models.SET_NULL)
