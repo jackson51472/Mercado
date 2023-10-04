@@ -40,4 +40,4 @@ class ItemPedidoAdmin(admin.ModelAdmin):
 
 @admin.register(Telefone)
 class TelefoneAdmin(admin.ModelAdmin):
-    list_display = ("numero")
+    list_display = ("numero", "telefone_fornecedor")
