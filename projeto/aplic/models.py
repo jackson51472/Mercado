@@ -154,3 +154,11 @@ class Endereco(models.Model):
     class Meta:
         verbose_name = _('Endereço')
         verbose_name_plural = _('Endereços')
+
+class Telefone(models.Model):
+    numero = models.CharField(_('Número'), max_length=11)
+    telefone_fornecedor = models.ForeignKey(Fornecedor, blank=False, null=True, on_delete= models.SET_NULL )
+
+    class Meta:
+        verbose_name = _('Telefone')
+        verbose_name_plural = _('Telefones')

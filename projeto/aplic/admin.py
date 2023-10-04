@@ -1,9 +1,9 @@
 from django.contrib import admin
-from aplic.models import Cliente, Cargo, Funcionario, Cartao, ItemPedido, Pedido, Produto, Endereco, Fornecedor
+from aplic.models import Cliente, Cargo, Funcionario, Cartao, ItemPedido, Pedido, Produto, Endereco, Fornecedor, Telefone
 
 @admin.register(Cliente)
 class ClienteAdmin(admin.ModelAdmin):
-    list_display = ["nome", 'cpf', 'login', 'senha', 'telefone']
+    list_display = ["nome", 'cpf', 'login', 'senha']
     
 @admin.register(Cargo)
 class CargoAdmin(admin.ModelAdmin):
@@ -37,3 +37,7 @@ class PedidoAdmin(admin.ModelAdmin):
 class ItemPedidoAdmin(admin.ModelAdmin):
     list_display = ("item", "quantidade", "pedido", "valorTotal")
     readonly_fields = ('valorTotal',)
+
+@admin.register(Telefone)
+class TelefoneAdmin(admin.ModelAdmin):
+    list_display = ("numero")
