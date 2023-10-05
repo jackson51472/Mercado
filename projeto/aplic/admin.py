@@ -26,7 +26,7 @@ class ProdutoAdmin(admin.ModelAdmin):
 
 @admin.register(Endereco)
 class EnderecoAdmin(admin.ModelAdmin):
-    list_display = ("endereco_fornecedor","cidade", "cep", "logradouro", "bairro", "numero", "complemento",  "pais", "uf")
+    list_display = ("cidade", "cep", "logradouro", "bairro", "numero", "complemento",  "pais", "uf", "endereco_fornecedor", "endereco_cliente", "endereco_funcionario",)
 
 @admin.register(Fornecedor)
 class FornecedorAdmin(admin.ModelAdmin):
@@ -45,5 +45,5 @@ class ItemPedidoAdmin(admin.ModelAdmin):
 
 @admin.register(Telefone)
 class TelefoneAdmin(admin.ModelAdmin):
-    list_display = ("numero", "telefone_fornecedor",)
+    list_display = ("numero", "telefone_fornecedor", "telefone_cliente", "telefone_funcionario",)
 

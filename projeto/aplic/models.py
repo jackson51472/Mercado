@@ -145,8 +145,9 @@ class Endereco(models.Model):
     cidade = models.CharField(_('Cidade'), max_length=200)
     pais = models.CharField(_('País'), max_length=200)
     uf = models.CharField(_('UF'), max_length=200, blank=False, default=None)
-    endereco_fornecedor = models.ForeignKey(Fornecedor, blank=False, null=True, on_delete= models.SET_NULL)
-
+    endereco_fornecedor = models.ForeignKey(Fornecedor, blank=True,  default=None, null=True, on_delete= models.SET_NULL)
+    endereco_cliente = models.ForeignKey(Cliente, blank=True, default=None, null=True, on_delete= models.DO_NOTHING)
+    endereco_funcionario = models.ForeignKey(Funcionario, blank=True, default=None, null=True, on_delete= models.SET_NULL)
 
     class Meta:
         verbose_name = _('Endereço')
@@ -159,7 +160,9 @@ class Endereco(models.Model):
 
 class Telefone(models.Model):
     numero = models.CharField(_('Número'), max_length=11)
-    telefone_fornecedor = models.ForeignKey(Fornecedor, blank=False, null=True, on_delete= models.SET_NULL )
+    telefone_fornecedor = models.ForeignKey(Fornecedor, blank=True, default=None, null=True, on_delete= models.SET_NULL )
+    telefone_cliente = models.ForeignKey(Cliente, blank=True, default=None, null=True, on_delete= models.DO_NOTHING)
+    telefone_funcionario = models.ForeignKey(Funcionario, blank=True, default=None, null=True, on_delete= models.SET_NULL)
 
 
 
