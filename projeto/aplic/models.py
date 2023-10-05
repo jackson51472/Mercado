@@ -6,7 +6,6 @@ class Pessoa(models.Model):
     
     nome = models.CharField(_("Nome"), blank=False, max_length=50,)
     cpf = models.CharField(_("cpf"), blank=False, max_length=11, unique=True)
-    telefone = models.IntegerField(_('Telefone'), blank=True,null=True)
     senha = models.CharField(_('Senha'), blank=False, max_length=100)
     login = models.CharField(_('Login'), blank=False, max_length=100, unique=True)
     
@@ -159,6 +158,11 @@ class Telefone(models.Model):
     numero = models.CharField(_('Número'), max_length=11)
     telefone_fornecedor = models.ForeignKey(Fornecedor, blank=False, null=True, on_delete= models.SET_NULL )
 
+
+
     class Meta:
         verbose_name = _('Telefone')
         verbose_name_plural = _('Telefones')
+    
+    def __str__(self):
+        return f"Numero: {self.numero}"

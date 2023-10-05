@@ -11,7 +11,7 @@ class CargoAdmin(admin.ModelAdmin):
 
 @admin.register(Funcionario)
 class FuncionarioAdmin(admin.ModelAdmin):
-    list_display = ['nome', 'cpf', "salario", 'cargo', 'telefone', 'login', 'senha',]
+    list_display = ['nome', 'cpf', "salario", 'cargo', 'login', 'senha',]
 
 @admin.register(Cartao)
 class CartaoAdmin(admin.ModelAdmin):
@@ -40,4 +40,4 @@ class ItemPedidoAdmin(admin.ModelAdmin):
 
 @admin.register(Telefone)
 class TelefoneAdmin(admin.ModelAdmin):
-    list_display = ("numero", "telefone_fornecedor")
+    list_display = ("numero", "telefone_fornecedor",)
