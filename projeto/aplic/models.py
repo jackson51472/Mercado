@@ -6,7 +6,7 @@ class Pessoa(models.Model):
     
     nome = models.CharField(_("Nome"), blank=False, max_length=50,)
     cpf = models.CharField(_("cpf"), blank=False, max_length=11, unique=True)
-    telefone = models.IntegerField(_('Telefone'), blank=True,null=True)
+
     
 
     class Meta:    
@@ -151,6 +151,22 @@ class Endereco(models.Model):
     class Meta:
         verbose_name = _('Endereço')
         verbose_name_plural = _('Endereços')
+
     
     def __str__(self):
         return f"Cidade: {self.cidade} | Bairro: {self.bairro} | Rua: {self.logradouro}"
+
+
+class Telefone(models.Model):
+    numero = models.CharField(_('Número'), max_length=11)
+    telefone_fornecedor = models.ForeignKey(Fornecedor, blank=False, null=True, on_delete= models.SET_NULL )
+
+
+
+    class Meta:
+        verbose_name = _('Telefone')
+        verbose_name_plural = _('Telefones')
+    
+    def __str__(self):
+        return f"Numero: {self.numero}"
+
