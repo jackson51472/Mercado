@@ -3,7 +3,7 @@ from aplic.models import Cliente, Cargo, Funcionario, Cartao, ItemPedido, Pedido
 
 @admin.register(Cliente)
 class ClienteAdmin(admin.ModelAdmin):
-    list_display = ["nome", 'cpf', 'login', 'senha', 'telefone']
+    list_display = ["nome", 'cpf', 'telefone']
     
 @admin.register(Cargo)
 class CargoAdmin(admin.ModelAdmin):
@@ -11,11 +11,11 @@ class CargoAdmin(admin.ModelAdmin):
 
 @admin.register(Funcionario)
 class FuncionarioAdmin(admin.ModelAdmin):
-    list_display = ['nome', 'cpf', "salario", 'cargo', 'telefone', 'login', 'senha',]
+    list_display = ['nome', 'cpf', "salario", 'cargo', 'telefone']
 
 @admin.register(Cartao)
 class CartaoAdmin(admin.ModelAdmin):
-    list_display = ['numero','senha',"pessoa_Dona"]
+    list_display = ['numero',"pessoa_dona"]
 
 @admin.register(Produto)
 class ProdutoAdmin(admin.ModelAdmin):
@@ -35,5 +35,5 @@ class PedidoAdmin(admin.ModelAdmin):
 
 @admin.register(ItemPedido)
 class ItemPedidoAdmin(admin.ModelAdmin):
-    list_display = ("item", "quantidade", "pedido", "valorTotal")
-    readonly_fields = ('valorTotal',)
+    list_display = ("item", "quantidade", "pedido", "valorPedido")
+    readonly_fields = ('valorPedido',)
