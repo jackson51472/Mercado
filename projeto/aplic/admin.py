@@ -1,5 +1,5 @@
 from django.contrib import admin
-from aplic.models import Cliente, Cargo, Funcionario, Cartao, ItemPedido, Pedido, Produto, Endereco, Fornecedor, Telefone
+from aplic.models import Cliente, Cargo, Funcionario, Cartao, ItemPedido, Pedido, Produto, Endereco, Fornecedor, Telefone, Mercado
 
 @admin.register(Cliente)
 class ClienteAdmin(admin.ModelAdmin):
@@ -18,7 +18,7 @@ class FuncionarioAdmin(admin.ModelAdmin):
 
 @admin.register(Cartao)
 class CartaoAdmin(admin.ModelAdmin):
-    list_display = ['numero',"pessoa_dona"]
+    list_display = ['numero_cartao',"pessoa_dona"]
 
 @admin.register(Produto)
 class ProdutoAdmin(admin.ModelAdmin):
@@ -26,11 +26,11 @@ class ProdutoAdmin(admin.ModelAdmin):
 
 @admin.register(Endereco)
 class EnderecoAdmin(admin.ModelAdmin):
-    list_display = ("cidade", "cep", "logradouro", "bairro", "numero", "complemento",  "pais", "uf", "endereco_fornecedor", "endereco_cliente", "endereco_funcionario",)
+    list_display = ("cidade", "cep", "logradouro", "bairro", "numero_casa", "complemento",  "pais", "uf", "endereco_fornecedor", "endereco_cliente", "endereco_funcionario",)
 
 @admin.register(Fornecedor)
 class FornecedorAdmin(admin.ModelAdmin):
-    list_display = ("nome","cnpj",)
+    list_display = ("nome_fornecedor","cnpj",)
 
 @admin.register(Pedido)
 class PedidoAdmin(admin.ModelAdmin):
@@ -39,11 +39,16 @@ class PedidoAdmin(admin.ModelAdmin):
 @admin.register(ItemPedido)
 class ItemPedidoAdmin(admin.ModelAdmin):
 
-    list_display = ("item", "quantidade", "pedido", "valorPedido")
+    list_display = ("produto", "quantidade", "pedido", "valorPedido")
     readonly_fields = ('valorPedido',)
 
 
 @admin.register(Telefone)
 class TelefoneAdmin(admin.ModelAdmin):
-    list_display = ("numero", "telefone_fornecedor", "telefone_cliente", "telefone_funcionario",)
+    list_display = ("numero_telefone", "telefone_fornecedor", "telefone_cliente", "telefone_funcionario",)
+
+
+@admin.register(Mercado)
+class MercadpAdmin(admin.ModelAdmin):
+    list_display = ("nome_mercado", "cnpj_mercado", "numero_telefone_mercado")
 

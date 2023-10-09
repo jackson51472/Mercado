@@ -1,9 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-class Pessoa(models.Model):
-
-    
+class Pessoa(models.Model):   
     nome = models.CharField(_("Nome"), blank=False, max_length=50,)
     cpf = models.CharField(_("cpf"), blank=False, max_length=11, unique=True)
 
@@ -52,7 +50,7 @@ class Funcionario(Pessoa):
         return f"{self.nome} / {self.cargo}"
 
 class Fornecedor(models.Model):
-    nome = models.CharField(_('Nome'), max_length=12)
+    nome_fornecedor = models.CharField(_('Nome'), max_length=12)
     cnpj = models.CharField(_('CNPJ'), max_length=14, unique=True)
 
     class Meta:
@@ -60,7 +58,7 @@ class Fornecedor(models.Model):
         verbose_name_plural = _('Fornecedores')
         
     def __str__(self):
-        return f"{self.nome}"
+        return f"{self.nome_fornecedor}"
     
 class Produto(models.Model):
     nome_produto =  models.CharField(_("Nome do Produto"), blank=False, max_length=50, unique=True,)
@@ -106,26 +104,25 @@ class Pedido(models.Model):
     def __str__(self):
         return f"{self.data_pedido} / {self.status}"
 
-
 class ItemPedido(models.Model):
-    item = models.ForeignKey(Produto, blank=True, null=True, on_delete= models.SET_NULL)
+    produto = models.ForeignKey(Produto, blank=True, null=True, on_delete= models.SET_NULL)
     quantidade = models.IntegerField(_("Quantidade Pedida"))
     pedido = models.ForeignKey(Pedido , blank=True, null=True, on_delete= models.SET_NULL)
     
 
     def valorPedido(self):
-        return self.quantidade * self.item.preco
+        return self.quantidade * self.produto.preco
 
     class Meta:
         verbose_name = _('Item Pedido')
         verbose_name_plural = _('Items Pedido')
 
     def __str__(self):
-        return f"Produto {self.item} / Quantidade: {self.quantidade}"
+        return f"Produto {self.produto} / Quantidade: {self.quantidade}"
     
 class Cartao(models.Model):
 
-    numero = models.CharField(_('Número Cartão'), max_length=12,unique=True)
+    numero_cartao = models.CharField(_('Número Cartão'), max_length=12,unique=True)
     pessoa_dona = models.ForeignKey(Cliente, blank=False, null=True, on_delete= models.SET_NULL)
 
     class Meta:
@@ -133,14 +130,14 @@ class Cartao(models.Model):
         verbose_name_plural = _('Cartões')
     
     def __str__(self):
-        return f"{self.numero}" 
+        return f"{self.numero_cartao}" 
 
 class Endereco(models.Model):
     
     cep = models.CharField(_('CEP'),)
     logradouro = models.CharField(_('Logradouro'), max_length=200)
     complemento = models.CharField(_('Complemento'), max_length=200)
-    numero = models.CharField(_('Número '),)
+    numero_casa = models.CharField(_('Número '),)
     bairro = models.CharField(_('Bairro'), max_length=200)
     cidade = models.CharField(_('Cidade'), max_length=200)
     pais = models.CharField(_('País'), max_length=200)
@@ -157,9 +154,8 @@ class Endereco(models.Model):
     def __str__(self):
         return f"Cidade: {self.cidade} | Bairro: {self.bairro} | Rua: {self.logradouro}"
 
-
 class Telefone(models.Model):
-    numero = models.CharField(_('Número'), max_length=11)
+    numero_telefone = models.CharField(_('Número'), max_length=11)
     telefone_fornecedor = models.ForeignKey(Fornecedor, blank=True, default=None, null=True, on_delete= models.SET_NULL )
     telefone_cliente = models.ForeignKey(Cliente, blank=True, default=None, null=True, on_delete= models.DO_NOTHING)
     telefone_funcionario = models.ForeignKey(Funcionario, blank=True, default=None, null=True, on_delete= models.SET_NULL)
@@ -171,5 +167,17 @@ class Telefone(models.Model):
         verbose_name_plural = _('Telefones')
     
     def __str__(self):
-        return f"Numero: {self.numero}"
+        return f"Numero: {self.numero_telefone}"
+
+class Mercado(models.Model):
+    nome_mercado =  models.CharField(_("Nome do Mercado"), blank=False, max_length=50, unique=True,)
+    cnpj_mercado = models.CharField(_('CNPJ'), max_length=14, unique=True)
+    numero_telefone_mercado = models.CharField(_('Número'), max_length=11)    
+
+    class Meta:
+        verbose_name = _('Mercado')
+        verbose_name_plural = _('Mercados')
+    
+    def __str__(self):
+        return f"Mercado {self.nome_mercado}"
 
