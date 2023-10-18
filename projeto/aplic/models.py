@@ -134,12 +134,13 @@ class Cartao(models.Model):
 
 class Endereco(models.Model):
     
+    cidade = models.CharField(_('Cidade'), max_length=200)
     cep = models.CharField(_('CEP'),)
     logradouro = models.CharField(_('Logradouro'), max_length=200)
     complemento = models.CharField(_('Complemento'), max_length=200)
     numero_casa = models.CharField(_('Número '),)
     bairro = models.CharField(_('Bairro'), max_length=200)
-    cidade = models.CharField(_('Cidade'), max_length=200)
+    
     pais = models.CharField(_('País'), max_length=200)
     uf = models.CharField(_('UF'), max_length=200, blank=False, default=None)
     endereco_fornecedor = models.ForeignKey(Fornecedor, blank=True,  default=None, null=True, on_delete= models.SET_NULL)
