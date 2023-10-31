@@ -8,11 +8,12 @@ class CargoAdmin(admin.ModelAdmin):
 
 admin.site.register(Cartao)
 class CartaoInline(admin.TabularInline):
+    list_display = ['numero_cartao',"pessoa_dona"]
     model = Cartao
     readonly_fields = ('id',)
     extra = 1
     classes = ('collapse', )
-    list_display = ['numero_cartao',"pessoa_dona"]
+    
 
 admin.site.register(Produto)
 class ProdutoInline(admin.TabularInline):

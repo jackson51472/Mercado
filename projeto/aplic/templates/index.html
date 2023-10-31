@@ -46,7 +46,13 @@
         </header>
     </header>
 
-
+  {% for produto in produtos %}
+  <ul>
+    <li>{{ produto.nome_produto }}, {{ produto.preco }}</li>
+    <a href="google.com">Mais</a>
+  </ul>  
+  
+  {% endfor %}
  
 
   </div>
