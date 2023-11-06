@@ -1,5 +1,12 @@
+import uuid
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from stdimage.models import StdImageField
+
+def get_file_path(_instance, filename):
+    ext = filename.split('.')[-1]
+    filename = f'{uuid.uuid4()}.{ext}'
+    return filename
 
 class Pessoa(models.Model):   
     nome = models.CharField(_("Nome"), blank=False, max_length=50,)
@@ -64,6 +71,7 @@ class Produto(models.Model):
     nome_produto =  models.CharField(_("Nome do Produto"), blank=False, max_length=50, unique=True,)
     preco = models.DecimalField(_("Preço"), null=True, blank=False, max_digits=8, decimal_places=2)
     peso = models.DecimalField(_("Peso"), null=True, blank=False, max_digits=8, decimal_places=2)
+    imagem = StdImageField(_('Imagem'), null=True, blank=True, upload_to=get_file_path, variations={'thumb': {'width': 420, 'height': 260, 'crop': True}})
     fornecedor = models.ForeignKey(Fornecedor, blank=True, null=True, on_delete= models.SET_NULL)
     marca = models.CharField(_("Nome da Marca"), blank=True, null=True, max_length=50,)
     estoque = models.IntegerField(_('Estoque'))
