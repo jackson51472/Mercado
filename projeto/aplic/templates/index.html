@@ -143,12 +143,18 @@
 
 {% load static %}
 {% for produto in produtos %}
+
+
+
+
+
+
   <ul>
     
 
     <li>{{ produto.nome_produto }}, R${{ produto.preco }}</li>
-    <img src="{{ produto.imagem.thumb.url }}" alt="{{produto.nome_produto}}">
-    <a href="google.com">Mais</a>
+    <img src="{{ produto.imagem.thumb.url }}" alt="{{produto.nome_produto}}" width="120" height="120">
+    <a href="#">Mais</a>
   </ul>  
 
   {% endfor %}
