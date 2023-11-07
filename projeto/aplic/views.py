@@ -17,7 +17,7 @@ class IndexView(TemplateView):
 class DetalhesProdutoView(ListView):
     template_name = 'detalhe_produto.html'
     paginate_by = 5
-    ordering = 'nome'
+    ordering = 'nome_produto'
     model = Produto
 
     def get_context_data(self, **kwargs: Any):

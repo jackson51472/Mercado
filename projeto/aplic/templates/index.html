@@ -1,4 +1,4 @@
-{% load static %}
+<!-- {% load static %} -->
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -62,7 +62,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-white border-bottom shadow-sm mb-3">
     <div class="container">
       <a class="navbar-brand" href="#">
-        <img class="logo" src="{% static 'img/logo_s.png' %}" alt="Logo">
+        <img class="logo" src="{% static 'img/logo.png' %}" alt="Logo">
         <span class="doublej">DOUBLE J</span>
         <span class="market">MARKET</span>
       </a>
@@ -144,17 +144,12 @@
 {% load static %}
 {% for produto in produtos %}
 
-
-
-
-
-
   <ul>
     
 
     <li>{{ produto.nome_produto }}, R${{ produto.preco }}</li>
     <img src="{{ produto.imagem.thumb.url }}" alt="{{produto.nome_produto}}" width="120" height="120">
-    <a href="#">Mais</a>
+    <a href="{% url 'detalhe_produto' id=produto.id %}" >Mais</a>
   </ul>  
 
   {% endfor %}
