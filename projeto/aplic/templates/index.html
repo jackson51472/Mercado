@@ -10,22 +10,34 @@
 
       </div>
 
-{% for produto in produtos %}
-<div class="container">
-  <div class="row">
-    <div class="col-12 col-md-7">
+      <div class="container">
+        <div class="row">
+          {% for produto in produtos %}
+            <div class="card-text col-md-4">
+              <a href="{% url 'detalhe_produto' id=produto.id %}">
+              <div class="card-title">{{ produto.nome_produto }}</div>
+              <img src="{{ produto.imagem.thumb.url }}" alt="{{ produto.nome_produto }}" width="120" height="120">              
+              <div class="card-info">
+                <div class="card-header">Preço: R${{ produto.preco }}</div>
+                <div class="card-header">Peso: {{ produto.peso }}KG</div>
+            </div>
+          </a>
+            </div>
+      
+            {% if forloop.counter|divisibleby:"5" %}
+              <!-- Cria uma nova linha a cada 3 produtos -->
+              </div>
+              <div class="row">
+            {% endif %}
+      
+            {% if forloop.last %}
+              <!-- Garante que a última linha seja fechada no final do loop -->
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+      
+    
 
-   </div>
-    <div class="card-text bg-light">
-      <img src="{{ produto.imagem.thumb.url }}" alt="{{produto.nome_produto}}" width="120" height="120">
-    <div class="card-title">{{ produto.nome_produto }}</div>
-    <div class="card-header">Peso {{ produto.peso }}KG</div>
-    <div class="card-header">R${{ produto.preco }}</div>
-    <a href="{% url 'detalhe_produto' id=produto.id %}" >Clique aqui para acessar informações sobre os produtos</a>
-    </div> 
-
-  </div>
-</div>
-<hr>
-  {% endfor %}
 {%endblock%}

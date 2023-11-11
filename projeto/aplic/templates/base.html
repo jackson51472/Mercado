@@ -15,7 +15,7 @@
   {% bootstrap_javascript %}
   <style>
     body {
-      background-color: rgb(141, 228, 235);
+      background-color: rgb(255, 255, 255);
     }
     a{text-decoration: none;}
 
@@ -43,19 +43,37 @@
   height: auto;
 }
 .card-text{
-  width: 150px;
+  width: 170px;
   height: auto;
-
+  margin: 10px; 
+  text-align: center;
+  background-color: rgb(235, 235, 235);
+  
+}
+.card-text img {
+  display: block;
+  margin: 0 auto; /* Centraliza a imagem dentro do card-text */
+  background-color: transparent;
 }
 .card-title{
   text-align: center;
 }
+.card-info{
+    display: flex;stroke-linecap: ;
+    justify-content: space-between;
+}
+.card-header{ width: 50%;
+    text-align: center;
+    display: inline-block;
+    margin: 1px; }
+    
+.card-text a{color: black;}
   </style>
 </head>
 
 <body>
  
-  <nav class="navbar navbar-expand-lg navbar-dark bg-white border-bottom shadow-sm mb-3">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-info border-bottom shadow-sm mb-3">
     <div class="container">
       <a class="navbar-brand" href="http://127.0.0.1:8000/#">
         <img class="logo" src="\media\logo2.png" alt="Logo">
