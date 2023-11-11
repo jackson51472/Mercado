@@ -5,36 +5,27 @@
     <div class="container">
       <div class="row">
         <div class="col-12 col-md-7">
-          <div class="d-flex flex-row-reverse justify-content-center justify-content-md-start">
-            <form class="ml-3 d-inline-block">
-              <select>
-                <option>Ordenar pelo nome</option>
-                <option>Ordenar pelo menor preço</option>
-                <option>Ordenar pelo maior preço</option>
-              </select>
-            </form>
-            <nav class="d-inline-block">
-              <ul class="pagination pagination-sm my-0">
-                <li class="page-item"><button class="page-link">1</button></li>
-                <li class="page-item"><button class="page-link">2</button></li>
-                <li class="page-item"><button class="page-link">3</button></li>
-              </ul>
-            </nav>
-          </div>
         </div>
         <hr class="mt-3">
 
       </div>
 
 {% for produto in produtos %}
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-7">
 
-  <ul>
-    
+   </div>
+    <div class="card-text bg-light">
+      <img src="{{ produto.imagem.thumb.url }}" alt="{{produto.nome_produto}}" width="120" height="120">
+    <div class="card-title">{{ produto.nome_produto }}</div>
+    <div class="card-header">Peso {{ produto.peso }}KG</div>
+    <div class="card-header">R${{ produto.preco }}</div>
+    <a href="{% url 'detalhe_produto' id=produto.id %}" >Clique aqui para acessar informações sobre os produtos</a>
+    </div> 
 
-    <li>{{ produto.nome_produto }}, R${{ produto.preco }}</li>
-    <img src="{{ produto.imagem.thumb.url }}" alt="{{produto.nome_produto}}" width="120" height="120">
-    <a href="{% url 'detalhe_produto' id=produto.id %}" >Mais</a>
-  </ul>  
-
+  </div>
+</div>
+<hr>
   {% endfor %}
 {%endblock%}

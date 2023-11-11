@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="{% static 'ico/logo.ico' %}" type="image/x-icon">
+  <link rel="shortcut icon" href="\media\logo.ico" type="image/x-icon">
   <link rel="stylesheet" href="{% static 'path/para/bootstrap_css' %}">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
     integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
@@ -17,6 +17,7 @@
     body {
       background-color: rgb(141, 228, 235);
     }
+    a{text-decoration: none;}
 
     /* Estilos para o novo ícone do carrinho */
     .navbar .navbar-brand .cart-icon {
@@ -30,14 +31,25 @@
 
     /* Corrigir o estilo da logo */
     .navbar .navbar-brand .logo {
-      width: 80px;
+      width: 60px;
       /* Ajuste o tamanho conforme necessário */
     }
     .letras{
-      width: 200px;
+      width: 150px;
       height: auto;
     }
+.pesquisar{
+  width: 400px;
+  height: auto;
+}
+.card-text{
+  width: 150px;
+  height: auto;
 
+}
+.card-title{
+  text-align: center;
+}
   </style>
 </head>
 
@@ -45,12 +57,12 @@
  
   <nav class="navbar navbar-expand-lg navbar-dark bg-white border-bottom shadow-sm mb-3">
     <div class="container">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="http://127.0.0.1:8000/#">
         <img class="logo" src="\media\logo2.png" alt="Logo">
         <img class="letras" src="\media\letras.png" alt="Logo">
       </a>
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Digite o que você procura">
+      <div class="input-group mx-auto">
+        <input type="text" class="pesquisar" placeholder="Digite o que você procura">
         <span class="input-group-append">
           <button class="btn btn-secondary" type="button">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -60,17 +72,11 @@
         </span>
       </div>
       
-      
-          </button>
-        </span>
+    
       </div>
-
     </div>
     <div class="align-self-end">
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a href="" class="nav-link text-primary">Pagina Inicial </a>
-        </li>
         <li class="nav-item">
           <a class="nav-link text-warning" href="">Login </a>
         </li>
