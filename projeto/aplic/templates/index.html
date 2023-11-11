@@ -21,7 +21,10 @@
                 <div class="card-header">Preço: R${{ produto.preco }}</div>
                 <div class="card-header">Peso: {{ produto.peso }}KG</div>
             </div>
-          </a>
+          </a> 
+          <div class="btn-comprar"> 
+            <button>Comprar</button>
+          </div>
             </div>
       
             {% if forloop.counter|divisibleby:"5" %}
