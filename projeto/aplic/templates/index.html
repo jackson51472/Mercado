@@ -5,6 +5,7 @@
     <div class="container">
       <div class="row">
         <div class="col-12 col-md-7">
+          <img class="slogan" src="\media\marketing.png" alt="slogan">
         </div>
         <hr class="mt-3">
 
@@ -27,14 +28,12 @@
           </div>
             </div>
       
-            {% if forloop.counter|divisibleby:"5" %}
-              <!-- Cria uma nova linha a cada 3 produtos -->
+            {% if forloop.counter|divisibleby:"6" %}
               </div>
               <div class="row">
             {% endif %}
       
             {% if forloop.last %}
-              <!-- Garante que a última linha seja fechada no final do loop -->
               </div>
             {% endif %}
           {% endfor %}

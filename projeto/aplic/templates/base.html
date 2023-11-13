@@ -42,13 +42,26 @@
   width: 400px;
   height: auto;
 }
+.input-group-append {
+    display: flex;
+    align-items: center; /* Centraliza verticalmente os itens do grupo de entrada */
+}
+.btn {
+    margin-left: -1px; /* Ajuste o espaçamento entre o input e o botão conforme necessário */
+    background-color: transparent;
+    transition: background-color 0.3s;
+}
+.btn:hover{
+  background-color: #ffd700;
+}
 .card-text{
   width: 170px;
-  height: auto;
-  margin: 10px; 
+  height: 250px;
+  margin: 20px; 
   text-align: center;
   background-color: rgb(248, 244, 244);
   border-radius: 10px;
+  overflow: hidden;
 }
 .card-text img {
   display: block;
@@ -78,10 +91,50 @@
     transition: background-color 0.3s;
     height: auto;
     margin-bottom: 10px;
+}.btn-pedidos {
+    color: white;
+    border: none; /* Remove a borda do botão */
+    padding: 0; /* Remove o preenchimento padrão do botão, se desejar */
+    background-color: #ffd700;; /* Define o fundo como transparente para remover qualquer aparência de botão */
+    cursor: pointer; /* Adiciona o ponteiro do mouse ao passar sobre o botão */
+    width: 100%;
+    transition: background-color 0.3s;
+    height: auto;
+    margin-bottom: 10px;
 }
 .btn-comprar button:hover {
     background-color: #ffd700; /* Amarelo mais intenso ao passar o mouse */
 }
+.btn-pedidos:hover{
+  background-color: blue;
+}
+.slogan-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.slogan {
+    width: 100%; /* Ajuste conforme necessário */
+    max-width: 800px; /* Máxima largura permitida */
+    height: auto; /* Mantém a proporção da imagem */
+    margin: 10px 0; /* Ajusta as margens conforme necessário */
+}.slogan-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.slogan {
+    width: 1270px; /* Ajuste conforme necessário */
+    max-width: 1500px; /* Máxima largura permitida */
+    height: auto; /* Mantém a proporção da imagem */
+    max-height: 100px; /* Ajuste a altura máxima conforme necessário */
+    margin: 10px 0; /* Ajusta as margens conforme necessário */
+}
+
+
+
   </style>
 </head>
 
@@ -95,13 +148,13 @@
       </a>
       <div class="input-group mx-auto">
         <input type="text" class="pesquisar" placeholder="Digite o que você procura">
-        <span class="input-group-append">
-          <button class="btn btn-secondary" type="button">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-            </svg>
-          </button>
-        </span>
+          <span class="input-group-append">
+              <button class="btn btn-secondary" type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                  </svg>
+              </button>
+          </span>
       </div>
       
     
@@ -117,10 +170,8 @@
         </li>
         <li class="nav-item">
           <a href="/admin" class="nav-link text-warning">Administração</a>
-        </li>
-        <li class="nav-item">
-          <a href="" class="nav-link text-primary">Produtos</a>
-        </li>
+          <a href=""></li><button class="btn-pedidos">
+          Pedidos </button> </li></a>
         <li class="nav-item">
           <a href="#" class="nav-link text-warning">
             <svg class="cart-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
