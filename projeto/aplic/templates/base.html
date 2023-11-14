@@ -16,6 +16,7 @@
   <style>
     body {
       background-color: rgb(255, 255, 255);
+      margin-top: 76px;
     }
     a{text-decoration: none;}
 
@@ -149,9 +150,20 @@
 
 <body>
  
-  <nav class="navbar navbar-expand-lg navbar-dark bg-info border-bottom shadow-sm mb-3">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-info border-bottom shadow-sm mb-3">
     <div class="container">
+      <form action="#" method="get">
+        <label for="categorias">Categorias:</label>
+        <select id="categorias" name="categorias">
+          <option value="categoria1">Produtos Básicos</option>
+          <option value="categoria2">Categoria 2</option>
+          <option value="categoria3">Categoria 3</option>
+          <!-- Adicione mais opções conforme necessário -->
+        </select>
+        <input type="submit" value="Ir">
+      </form>
       <a class="navbar-brand" href="http://127.0.0.1:8000/#">
+        
         <img class="logo" src="\media\logo2.png" alt="Logo">
         <img class="letras" src="\media\letras.png" alt="Logo">
       </a>
@@ -215,4 +227,20 @@
   integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
   integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
-</html>
+  <script>
+    function redirecionar() {
+      var categoriaSelecionada = document.getElementById("categorias").value;
+  
+      // Adicione mais casos conforme necessário para outras categorias
+      switch (categoriaSelecionada) {
+        case "Produtos básicos":
+          window.location.href = "/produtos-basicos";
+          break;
+        // Adicione mais casos conforme necessário
+        default:
+          break;
+      }
+    }
+  </script>
+  
+  </html>

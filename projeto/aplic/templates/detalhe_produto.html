@@ -1,12 +1,46 @@
-
 {% extends 'base.html' %}
 
-
 {% block content%}
-      <h3>{{produto.nome_produto}}</h3>
-     <img src="{{ produto.imagem.thumb.url }}" alt=""> 
-     {{produto.preco}}
-     <a href="">{{produto.fornecedor}}</a>
-    </div>
-{%endblock%}
 
+<style>
+  .card-wrapper {
+    transform: translate3d(0px, 0px, 0px);
+  }
+
+  .card-slide {
+    width: 965px;
+  }
+
+  .card-image {
+    transform-origin: 0px 0px;
+    font-size: 0px;
+    transform: scale(1, 1) translate3d(0px, 0px, 0px);
+    max-height: 450px;
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+  }
+</style>
+
+<div class="swiper-wrapper card-wrapper">
+  <div class="swiper-slide card-slide">
+    <div class="vtex-store-components-3-x-productImage">
+      <div class="relative">
+        <div class="card-image">
+        
+          <img data-vtex-preload="true" class="vtex-store-components-3-x-productImageTag vtex-store-components-3-x-productImageTag--main" 
+               src="{{ produto.imagem.thumb.url }}" 
+
+               loading="eager" 
+               sizes="(max-width: 64.1rem) 100vw, 50vw" 
+               crossorigin="anonymous">
+        </div>
+      <div class="card-title">
+        {{ produto.nome_produto }} {{ produto.peso|floatformat:0 }} KG
+      </div>  
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
