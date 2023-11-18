@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content%}
+<h1>login</h1>
+<form action="{% url 'login' %}" method="post"> {% csrf_token %}
+
+
+    {% if user.is_authenticated %}
+        <p>Você já está autenticado como {{ user.username }}.
+
+    {% else%}
+    <input type="text" placeholder="Nome" name="nome">
+    <br>
+    <input type="text" placeholder="Senha" name="password">
+    <br>
+    <input type="submit" placeholder="Logar">
+    {% endif %}
+
+</form>
+
+{% endblock %}

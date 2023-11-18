@@ -2,11 +2,47 @@ import uuid
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from stdimage.models import StdImageField
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 def get_file_path(_instance, filename):
     ext = filename.split('.')[-1]
     filename = f'{uuid.uuid4()}.{ext}'
+
     return filename
+
+
+class ClienteManager(BaseUserManager):
+    def create_user(self, nome, senha=None, **extra_fields):
+        
+        
+        user = self.model( nome=nome, **extra_fields)
+        user.set_password(senha)
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, nome, senha=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+
+        return self.create_user( nome, senha, **extra_fields)
+
+class Cliente(AbstractBaseUser):
+
+    nome = models.CharField(_("Nome"), blank=False, max_length=50,)
+    cpf = models.CharField(_("cpf"), blank=False, max_length=11, unique=True)
+    password = models.CharField(_("password"), max_length=128)
+
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+    objects = ClienteManager()
+
+    USERNAME_FIELD = 'nome'
+    REQUIRED_FIELDS = ['nome']
+
+    def __str__(self):
+        return self.nome
+
+
 
 class Pessoa(models.Model):   
     nome = models.CharField(_("Nome"), blank=False, max_length=50,)
@@ -23,12 +59,6 @@ class Pessoa(models.Model):
     def __str__(self):
         return self.nome 
 
-class Cliente(Pessoa):
-
-
-    class Meta:
-        verbose_name = _('Cliente')
-        verbose_name_plural = _('Clientes')
 
 class Cargo(models.Model):
 
@@ -68,9 +98,27 @@ class Fornecedor(models.Model):
         return f"{self.nome_fornecedor}"
     
 class Produto(models.Model):
+
     nome_produto =  models.CharField(_("Nome do Produto"), blank=False, max_length=50, unique=True,)
     preco = models.DecimalField(_("Preço"), null=True, blank=False, max_digits=8, decimal_places=2)
     peso = models.DecimalField(_("Peso"), null=True, blank=False, max_digits=8, decimal_places=2)
+
+    GRAMA = "Grama"
+    ML = "Ml"
+    UNIDADE = "Quantidade"
+
+    CHOICES = [
+        (GRAMA, "Grama"),
+        (ML,"Ml"),
+        (UNIDADE,"Quantidade"),
+       
+    ]
+    status = models.CharField(
+        choices=CHOICES,
+    )
+
+
+
     imagem = StdImageField(_('Imagem'), null=True, blank=True, upload_to=get_file_path, variations={'thumb': {'width': 420, 'height': 260, 'crop': True}})
     fornecedor = models.ForeignKey(Fornecedor, blank=True, null=True, on_delete= models.SET_NULL)
     marca = models.CharField(_("Nome da Marca"), blank=True, null=True, max_length=50,)
@@ -81,6 +129,33 @@ class Produto(models.Model):
     class Meta:
         verbose_name = _('Produto')
         verbose_name_plural = _('Produtos')
+
+    def dividir(self):
+        quantidade = 0
+        if self.peso >= 1000:
+            quantidade = self.peso / 1000
+        else:
+            quantidade = self.peso
+
+
+        #GRAMA
+        if self.status == "Grama":
+            if self.peso >= 1000:
+                return f"{quantidade:.1f} kg"
+            else:
+                return f"{quantidade:.1f} g"
+        #ML    
+        elif self.status == "Ml":
+            if self.peso >= 1000:
+                return f"{quantidade:.1f} L"
+            else:
+                return f"{quantidade:.1f} ml"
+        #UNIDADE
+        else:
+            return quantidade
+
+
+
 
     def __str__(self):
         return f"{self.nome_produto} / R${self.preco}"
