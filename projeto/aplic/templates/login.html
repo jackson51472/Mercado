@@ -1,20 +1,39 @@
 {% extends "base.html" %}
 {% block content%}
 <h1>login</h1>
-<form action="{% url 'login' %}" method="post"> {% csrf_token %}
 
+{% if form.errors %}
+<p>Your username and password didn't match. Please try again.</p>
+{% endif %}
 
+{% if next %}
     {% if user.is_authenticated %}
-        <p>Você já está autenticado como {{ user.username }}.
-
-    {% else%}
-    <input type="text" placeholder="Nome" name="nome">
-    <br>
-    <input type="text" placeholder="Senha" name="password">
-    <br>
-    <input type="submit" placeholder="Logar">
+    <p>Your account doesn't have access to this page. To proceed,
+    please login with an account that has access.</p>
+    {% else %}
+    <p>Please login to see this page.</p>
     {% endif %}
+{% endif %}
 
+<form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+<table>
+<tr>
+    <td>Usuário</td>
+    <td><input type="text" placeholder="" name="username"></td>
+</tr>
+<tr>
+    <td>Senha</td>
+    <td><input type="password" placeholder="" name="password"></td>
+</tr>
+</table>
+
+<input type="submit" value="login">
+<input type="hidden" name="next" value="{{ next }}">
 </form>
+
+{# Assumes you set up the password_reset view in your URLconf #}
+<p><a href="">Lost password?</a></p>
+
 
 {% endblock %}

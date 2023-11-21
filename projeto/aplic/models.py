@@ -2,7 +2,7 @@ import uuid
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from stdimage.models import StdImageField
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, User
 
 def get_file_path(_instance, filename):
     ext = filename.split('.')[-1]
@@ -26,11 +26,12 @@ class ClienteManager(BaseUserManager):
 
         return self.create_user( nome, senha, **extra_fields)
 
-class Cliente(AbstractBaseUser):
-
+class Cliente(models.Model):
+    #username = models.CharField(_("Username"), blank=False, max_length=50,)
     nome = models.CharField(_("Nome"), blank=False, max_length=50,)
     cpf = models.CharField(_("cpf"), blank=False, max_length=11, unique=True)
-    password = models.CharField(_("password"), max_length=128)
+    #password = models.CharField(_("password"), max_length=128)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)

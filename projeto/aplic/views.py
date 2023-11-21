@@ -4,28 +4,31 @@ from typing import Any
 from django.http import HttpResponse
 from django.views import View
 from django.views.generic import TemplateView
-from aplic.models import Produto, Cliente
+from aplic.models import Produto, Cliente, User
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
 
 def cliente_login(request):
-    if request.method == 'GET':
-        return render(request , "login.html")
-    else:
+    if request.method == 'POST':
+    
+        print(2)
         
         
         nome = request.POST.get['nome']
         senha = request.POST.get['password']
         cliente = authenticate(request, nome=nome, password=senha)
 
+        print(3)
         if cliente is not None:
+            print(4)
             login(request, cliente)
             messages.success(request, 'Login bem-sucedido!')
             return redirect('pagina_login')
         else:
-            messages.error(request, 'As credenciais estão incorretas. Tente novamente.')
+            print(5)
+            return HttpResponse("ERRADO")
        
 
     return render(request, 'login.html')
@@ -38,22 +41,22 @@ def cadastro (request):
     else:
         nome = request.POST.get("nome")
         cpf = request.POST.get("cpf")
+        
         username = request.POST.get('username')
-        senha = request.POST.get('senha')
-        
-        user = Cliente.objects.filter(cpf=cpf).first()
+        password = request.POST.get('senha')
 
-        if user:
+        user = User.objects.create_user(username=username,
+                                 email='trocar@beatles.com',
+                                 password=password)
+        
+        cliente = Cliente.objects.filter(cpf=cpf).first()
+
+        if cliente:
             return HttpResponse("Já existe usuario com esse cpf")
-        else:
-            user = Cliente.objects.filter(username=username).first()
-
-            if user:
-                return HttpResponse("Já existe usuario com esse cpf")
-        
+       
     
-        user = Cliente.objects.create(nome=nome, cpf=cpf, username=username, password=senha)
-        user.save()
+        cliente = Cliente.objects.create(nome=nome, cpf=cpf, user=user)
+        cliente.save()
 
         return HttpResponse("Cadastrado")
 
