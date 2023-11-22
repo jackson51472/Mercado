@@ -7,10 +7,6 @@ from django.views.generic import TemplateView
 from aplic.models import Produto, Cliente, User
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
-
-# No seu arquivo views.py
-from django.shortcuts import render
-from .models import Produto
 from django.db.models import Q
 
 def buscar_produtos(request):

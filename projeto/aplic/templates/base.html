@@ -20,38 +20,38 @@
     }
     a{text-decoration: none;}
 
-    /* Estilos para o novo ícone do carrinho */
+   
     .navbar .navbar-brand .cart-icon {
       width: 54px;
-      /* Ajuste o tamanho conforme necessário */
+     
       height: 54px;
-      /* Ajuste o tamanho conforme necessário */
+     
       fill: rgb(15, 33, 196);
-      /* Cor do ícone do carrinho */
+      
     }
 
-    /* Corrigir o estilo da logo */
+  
     .navbar .navbar-brand .logo {
       width: 60px;
-      /* Ajuste o tamanho conforme necessário */
+      
     }
     .letras{
       width: 150px;
       height: auto;
     }
     .input-group-prepend {
-    width: auto; /* Ajuste conforme necessário */
+    width: auto;
     height: auto;
-    margin-right: 10px; /* Espaçamento entre a logo e a barra de busca */
+    margin-right: 10px; 
   }
 
 
 .input-group-append {
     display: flex;
-    align-items: center; /* Centraliza verticalmente os itens do grupo de entrada */
+    align-items: center; 
 }
 .btn {
-    margin-left: -1px; /* Ajuste o espaçamento entre o input e o botão conforme necessário */
+    margin-left: -1px; 
     background-color: transparent;
     transition: background-color 0.3s;
 }
@@ -69,7 +69,7 @@
 }
 .card-text img {
   display: block;
-  margin: 0 auto; /* Centraliza a imagem dentro do card-text */
+  margin: 0 auto; 
   background-color: transparent;
 }
 .card-title{
@@ -87,27 +87,27 @@
 .card-text a{color: black;}
 .btn-comprar button {
     color: white;
-    border: none; /* Remove a borda do botão */
-    padding: 0; /* Remove o preenchimento padrão do botão, se desejar */
-    background-color: #3badff; /* Define o fundo como transparente para remover qualquer aparência de botão */
-    cursor: pointer; /* Adiciona o ponteiro do mouse ao passar sobre o botão */
+    border: none; 
+    padding: 0;
+    background-color: #3badff; 
+    cursor: pointer; 
     width: 100%;
     transition: background-color 0.3s;
     height: auto;
     margin-bottom: 10px;
 }.btn-pedidos {
     color: white;
-    border: none; /* Remove a borda do botão */
-    padding: 0; /* Remove o preenchimento padrão do botão, se desejar */
-    background-color: #ffd700;; /* Define o fundo como transparente para remover qualquer aparência de botão */
-    cursor: pointer; /* Adiciona o ponteiro do mouse ao passar sobre o botão */
+    border: none; 
+    padding: 0; 
+    background-color: #ffd700;; 
+    cursor: pointer; 
     width: 100%;
     transition: background-color 0.3s;
     height: auto;
     margin-bottom: 10px;
 }
 .btn-comprar button:hover {
-    background-color: #ffd700; /* Amarelo mais intenso ao passar o mouse */
+    background-color: #ffd700; 
 }
 .btn-pedidos:hover{
   background-color: blue;
@@ -119,10 +119,10 @@
 }
 
 .slogan {
-    width: 100%; /* Ajuste conforme necessário */
-    max-width: 800px; /* Máxima largura permitida */
-    height: auto; /* Mantém a proporção da imagem */
-    margin: 10px 0; /* Ajusta as margens conforme necessário */
+    width: 100%; 
+    max-width: 800px;
+    height: auto; 
+    margin: 10px 0; 
 }.slogan-container {
     display: flex;
     flex-direction: column;
@@ -130,11 +130,11 @@
 }
 
 .slogan {
-    width: 1270px; /* Ajuste conforme necessário */
-    max-width: 1500px; /* Máxima largura permitida */
-    height: auto; /* Mantém a proporção da imagem */
-    max-height: 100px; /* Ajuste a altura máxima conforme necessário */
-    margin: 10px 0; /* Ajusta as margens conforme necessário */
+    width: 1270px; 
+    max-width: 1500px; 
+    height: auto; 
+    max-height: 100px; 
+    margin: 10px 0; 
 }
 
 .cart-icon{
@@ -159,7 +159,7 @@
         <img class="logo" src="\media\logo2.png" alt="Logo">
         <img class="letras" src="\media\letras.png" alt="Logo">
       </a>
-       
+    <div class="input-group mx-auto">
       <form method="GET" action="{% url 'buscar_produtos' %}" class="form-inline my-2 my-lg-0 ml-auto">
         <div class="input-group">
             <input type="text" class="form-control" placeholder="Digite aqui para buscar" name="search" id="search" value="{{ termo_de_busca }}">
@@ -171,8 +171,8 @@
                 </button>
             </div>
         </div>
-    </form>
-      
+      </form>
+    </div>
     
       </div>
     </div>
@@ -227,12 +227,12 @@
     function redirecionar() {
       var categoriaSelecionada = document.getElementById("categorias").value;
   
-      // Adicione mais casos conforme necessário para outras categorias
+      
       switch (categoriaSelecionada) {
         case "Produtos básicos":
           window.location.href = "/produtos-basicos";
           break;
-        // Adicione mais casos conforme necessário
+        
         default:
           break;
       }
