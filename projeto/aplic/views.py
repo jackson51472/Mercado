@@ -8,6 +8,21 @@ from aplic.models import Produto, Cliente, User
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 
+# No seu arquivo views.py
+from django.shortcuts import render
+from .models import Produto
+from django.db.models import Q
+
+def buscar_produtos(request):
+    termo_de_busca = request.GET.get('search')
+
+    if termo_de_busca:
+        resultados = Produto.objects.filter(Q(nome_produto__icontains=termo_de_busca))
+    else:
+        resultados = Produto.objects.all()
+
+    context = {'resultados': resultados, 'termo_de_busca': termo_de_busca}
+    return render(request, 'buscar.html', context)
 
 def cliente_login(request):
     if request.method == 'POST':
