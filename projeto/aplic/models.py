@@ -2,7 +2,7 @@ import uuid
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from stdimage.models import StdImageField
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, User
+from django.contrib.auth.models import User
 
 def get_file_path(_instance, filename):
     ext = filename.split('.')[-1]
@@ -11,32 +11,18 @@ def get_file_path(_instance, filename):
     return filename
 
 
-class ClienteManager(BaseUserManager):
-    def create_user(self, nome, senha=None, **extra_fields):
-        
-        
-        user = self.model( nome=nome, **extra_fields)
-        user.set_password(senha)
-        user.save(using=self._db)
-        return user
-
-    def create_superuser(self, nome, senha=None, **extra_fields):
-        extra_fields.setdefault('is_staff', True)
-        extra_fields.setdefault('is_superuser', True)
-
-        return self.create_user( nome, senha, **extra_fields)
 
 class Cliente(models.Model):
-    #username = models.CharField(_("Username"), blank=False, max_length=50,)
     nome = models.CharField(_("Nome"), blank=False, max_length=50,)
     cpf = models.CharField(_("cpf"), blank=False, max_length=11, unique=True)
-    #password = models.CharField(_("password"), max_length=128)
+    
+
+    # Para ser feito essa parte você deve importar User
+    # from django.contrib.auth.models import User
+    # Essa parte vincúla o cliente com o User que o ele criar na hora de cadastrar um novo Cliente no sistema 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-
-    is_active = models.BooleanField(default=True)
-    is_staff = models.BooleanField(default=False)
-    objects = ClienteManager()
-
+    #=========================================================================================================
+    
     USERNAME_FIELD = 'nome'
     REQUIRED_FIELDS = ['nome']
 

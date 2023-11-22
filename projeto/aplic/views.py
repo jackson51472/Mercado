@@ -7,28 +7,27 @@ from django.views.generic import TemplateView
 from aplic.models import Produto, Cliente, User
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib import messages
+
 
 def cliente_login(request):
     if request.method == 'POST':
     
-        print(2)
-        
-        
+        # Pega o nome e passaword do login.html, através da tag name no input.
         nome = request.POST.get['nome']
         senha = request.POST.get['password']
-        cliente = authenticate(request, nome=nome, password=senha)
+        #===============================================================
 
-        print(3)
-        if cliente is not None:
-            print(4)
+
+        # Verifica os campos
+        cliente = authenticate(request, username=nome, password=senha)
+
+
+        # Se cliente não tiver autenticado ira retornar None e não ira logar
+        if cliente is not None:         
             login(request, cliente)
-            messages.success(request, 'Login bem-sucedido!')
-            return redirect('pagina_login')
-        else:
-            print(5)
-            return HttpResponse("ERRADO")
+            return redirect('/index')
+        
+       
        
 
     return render(request, 'login.html')
@@ -39,22 +38,27 @@ def cadastro (request):
     if request.method == "GET":
         return render(request, "cadastro.html")
     else:
+        # Pega o nome e passaword do cadastro.html, através da tag name no input.
         nome = request.POST.get("nome")
         cpf = request.POST.get("cpf")
         
         username = request.POST.get('username')
         password = request.POST.get('senha')
 
-        user = User.objects.create_user(username=username,
-                                 email='trocar@beatles.com',
-                                 password=password)
-        
+        # Verifica se o CPF já existe no sistema, caso exista a conta não poderá ser criada
         cliente = Cliente.objects.filter(cpf=cpf).first()
 
         if cliente:
             return HttpResponse("Já existe usuario com esse cpf")
+        
+        # Primeiro cria o User com os atributos username e password.
+        # Caso seu User tenha e-mail basta apenas criar "email=request.POST.get("email")",
+        # mas para isso deve ter um input na pagina de cadastro
+        user = User.objects.create_user(username=username, password=password)
        
-    
+        # Cria o Cliente, nele passa o User que ele ira pertencer.
+        # Mas para seu Cliente.models deve ter "user=models.OneToOneField(User, on_delete=models.CASCADE)" 
+        # Caso não esteja criado basta ir em models e ver oque foi feito
         cliente = Cliente.objects.create(nome=nome, cpf=cpf, user=user)
         cliente.save()
 
@@ -81,6 +85,3 @@ class DetalhesProdutoView(ListView):
         context['produto'] = Produto.objects.filter(id=id).first
         return context
 
-class MyView(View):
-    def get(self, request, *args, **kwargs):
-        return HttpResponse("Hello, World!")
