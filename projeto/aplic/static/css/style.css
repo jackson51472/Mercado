@@ -132,3 +132,20 @@ transition: background-color 0.3s;
 .nav-item:hover {
 background-color: #ffd700;
 }
+.card-wrapper {
+    transform: translate3d(0px, 0px, 0px);
+  }
+
+.card-slide {
+    width: 965px;
+  }
+
+.card-image {
+    transform-origin: 0px 0px;
+    font-size: 0px;
+    transform: scale(1, 1) translate3d(0px, 0px, 0px);
+    max-height: 450px;
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+  }

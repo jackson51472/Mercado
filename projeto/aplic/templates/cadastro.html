@@ -1,5 +1,7 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content%}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
 <h1>Cadastro</h1>
 
 <form action="{% url 'cadastro' %}" method="post"> {% csrf_token %}
