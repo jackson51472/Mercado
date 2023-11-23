@@ -1,0 +1,134 @@
+body {
+    background-color: rgb(255, 255, 255);
+    margin-top: 76px;
+  }
+  a{text-decoration: none;}
+
+ 
+  .navbar .navbar-brand .cart-icon {
+    width: 54px;
+   
+    height: 54px;
+   
+    fill: rgb(15, 33, 196);
+    
+  }
+
+
+  .navbar .navbar-brand .logo {
+    width: 60px;
+    
+  }
+  .letras{
+    width: 150px;
+    height: auto;
+  }
+  .input-group-prepend {
+  width: auto;
+  height: auto;
+  margin-right: 10px; 
+}
+
+
+.input-group-append {
+  display: flex;
+  align-items: center; 
+}
+.btn {
+  margin-left: -1px; 
+  background-color: transparent;
+  transition: background-color 0.3s;
+}
+.btn:hover{
+background-color: #ffd700;
+}
+.card-text{
+width: 180px;
+height: 260px;
+margin: 15px; 
+text-align: center;
+background-color: rgb(248, 244, 244);
+border-radius: 10px;
+overflow: hidden;
+}
+.card-text img {
+display: block;
+margin: 0 auto; 
+background-color: transparent;
+}
+.card-title{
+text-align: center;
+}
+.card-info{
+  display: flex;stroke-linecap: 
+  justify-content space-between;
+}
+.card-header{ width: 50%;
+  text-align: center;
+  display: inline-block;
+  margin: 1px; }
+  
+.card-text a{color: black;}
+.btn-comprar button {
+  color: white;
+  border: none; 
+  padding: 0;
+  background-color: #3badff; 
+  cursor: pointer; 
+  width: 100%;
+  transition: background-color 0.3s;
+  height: auto;
+  margin-bottom: 10px;
+}.btn-pedidos {
+  color: white;
+  border: none; 
+  padding: 0; 
+  background-color: #ffd700;; 
+  cursor: pointer; 
+  width: 100%;
+  transition: background-color 0.3s;
+  height: auto;
+  margin-bottom: 10px;
+}
+.btn-comprar button:hover {
+  background-color: #ffd700; 
+}
+.btn-pedidos:hover{
+background-color: blue;
+}
+.slogan-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.slogan {
+  width: 100%; 
+  max-width: 800px;
+  height: auto; 
+  margin: 10px 0; 
+}.slogan-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.slogan {
+  width: 1270px; 
+  max-width: 1500px; 
+  height: auto; 
+  max-height: 100px; 
+  margin: 10px 0; 
+}
+
+.cart-icon{
+width: 25px;
+height: auto;
+}
+
+.nav-item{
+transition: background-color 0.3s;
+}
+.nav-item:hover {
+background-color: #ffd700;
+}
