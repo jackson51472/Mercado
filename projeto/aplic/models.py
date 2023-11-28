@@ -29,8 +29,6 @@ class Cliente(models.Model):
     def __str__(self):
         return self.nome
 
-
-
 class Pessoa(models.Model):   
     nome = models.CharField(_("Nome"), blank=False, max_length=50,)
     cpf = models.CharField(_("cpf"), blank=False, max_length=11, unique=True)
@@ -45,7 +43,6 @@ class Pessoa(models.Model):
 
     def __str__(self):
         return self.nome 
-
 
 class Cargo(models.Model):
 
@@ -128,7 +125,7 @@ class Produto(models.Model):
         #GRAMA
         if self.status == "Grama":
             if self.peso >= 1000:
-                if (self.peso // 1000) != 0:
+                if (self.peso % 1000) != 0:
                     return f"{quantidade:.2f} kg"
                 else:
                     return f"{quantidade:.0f} kg"
@@ -138,7 +135,7 @@ class Produto(models.Model):
         #ML    
         elif self.status == "Ml":
             if self.peso >= 1000:
-                if (self.peso // 1000) != 0:
+                if (self.peso % 1000) != 0:
                     return f"{quantidade:.2f} L"
                 else:
                     return f"{quantidade:.0f} L"
@@ -146,7 +143,7 @@ class Produto(models.Model):
                 return f"{quantidade:.0f} ml"
         #UNIDADE
         else:
-            return quantidade
+            return ""
 
 
 

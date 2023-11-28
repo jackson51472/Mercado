@@ -43,8 +43,6 @@ def cliente_login(request):
 
     return render(request, 'login.html')
 
-
-
 def cadastro (request):
     if request.method == "GET":
         return render(request, "cadastro.html")
