@@ -1,41 +1,39 @@
-{% extends "base.html" %}
-{% load static %} 
+{% load static %}
 {% block content%}
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
-<h1>login</h1>
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+<div class="flex-container">
+    <div class="form-container">
+        <a href="http://127.0.0.1:8000/#">
+            <img src="\media\logo.png" alt="Logo" class="double">
+        </a>
 
-{% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
-{% endif %}
+        {% if form.errors %}
+        <p>Your username and password didn't match. Please try again.</p>
+        {% endif %}
 
-{% if next %}
-    {% if user.is_authenticated %}
-    <p>Your account doesn't have access to this page. To proceed,
-    please login with an account that has access.</p>
-    {% else %}
-    <p>Please login to see this page.</p>
-    {% endif %}
-{% endif %}
+        {% if next %}
+        {% if user.is_authenticated %}
+        <p>Your account doesn't have access to this page. To proceed,
+            please login with an account that has access.</p>
+        {% else %}
+        <p>Please login to see this page.</p>
+        {% endif %}
+        {% endif %}
 
-<form method="post" action="{% url 'login' %}">
-{% csrf_token %}
-<table>
-<tr>
-    <td>Usuário</td>
-    <td><input type="text" placeholder="" name="username"></td>
-</tr>
-<tr>
-    <td>Senha</td>
-    <td><input type="password" placeholder="" name="password"></td>
-</tr>
-</table>
+        <p><b>Faça o login</b></p>
+        <div class="row">
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                <input type="text" placeholder="" name="username"><br>
+                <input type="password" placeholder="" name="password">
+                <input type="submit" class="login" value="Login">
+                <input type="hidden" name="next" value="{{ next }}">
+            </form>
 
-<input type="submit" value="login">
-<input type="hidden" name="next" value="{{ next }}">
-</form>
+            {# Assumes you set up the password_reset view in your URLconf #}
+            <p><a href="http://127.0.0.1:8000/cadastro/">Faça o seu cadastro</a></p>
 
-{# Assumes you set up the password_reset view in your URLconf #}
-<p><a href="">Lost password?</a></p>
-
-
-{% endblock %}
+        </div>
+    </div>
+</div>
+        {% endblock %}

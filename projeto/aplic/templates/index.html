@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %} 
 {% block content%}
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
 
   <main>
     <div class="container">
@@ -18,10 +18,10 @@
           
             <div class="card-text col-md-4">
               <a href="{% url 'detalhe_produto' id=produto.id %}">
-              <div class="card-title">{{ produto.nome_produto }} {{ produto.peso |floatformat:0 }}</div>
-              <img src="{{ produto.imagem.thumb.url }}" alt="{{ produto.nome_produto }}" width="120" height="120">              
+              <img src="{{ produto.imagem.thumb.url }}" alt="{{ produto.nome_produto }}" width="120" height="120">
+              <div class="card-title">{{ produto.nome_produto }}</div>
               <div class="card-info">
-                <div class="card-header">Preço: R${{ produto.preco |floatformat:1 }}</div>
+                <div class="card-header">R${{ produto.preco |floatformat:1 }}</div>
                 
             </div>
           </a> 
@@ -46,5 +46,4 @@
       
 <hr>
 <h1>Bebidas</h1>
-
 {%endblock%}

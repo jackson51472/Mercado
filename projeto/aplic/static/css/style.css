@@ -63,12 +63,19 @@ text-align: center;
   display: flex;stroke-linecap: 
   justify-content space-between;
 }
-.card-header{ width: 50%;
+.card-header {
+  width: 50%;
   text-align: center;
   display: inline-block;
-  margin: 1px; }
+  margin: 1px;
+  color: blue; /* Alterando a cor para azul */
+  border: none; /* Removendo o contorno */
+}
+
   
-.card-text a{color: black;}
+.card-text a{
+  color: black;
+}
 .btn-comprar button {
   color: white;
   border: none; 
