@@ -18,7 +18,7 @@
           
             <div class="card-text col-md-4">
               <a href="{% url 'detalhe_produto' id=produto.id %}">
-              <div class="card-title">{{ produto.nome_produto }} {{ produto.peso |floatformat:0 }}</div>
+              <div class="card-title">{{ produto.nome_produto }} {{ produto.dividir }}</div>
               <img src="{{ produto.imagem.thumb.url }}" alt="{{ produto.nome_produto }}" width="120" height="120">              
               <div class="card-info">
                 <div class="card-header">Preço: R${{ produto.preco |floatformat:1 }}</div>
