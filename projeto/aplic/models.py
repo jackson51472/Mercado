@@ -128,15 +128,22 @@ class Produto(models.Model):
         #GRAMA
         if self.status == "Grama":
             if self.peso >= 1000:
-                return f"{quantidade:.1f} kg"
+                if (self.peso // 1000) != 0:
+                    return f"{quantidade:.2f} kg"
+                else:
+                    return f"{quantidade:.0f} kg"
+                
             else:
-                return f"{quantidade:.1f} g"
+                return f"{quantidade:.0f} g"
         #ML    
         elif self.status == "Ml":
             if self.peso >= 1000:
-                return f"{quantidade:.1f} L"
+                if (self.peso // 1000) != 0:
+                    return f"{quantidade:.2f} L"
+                else:
+                    return f"{quantidade:.0f} L"
             else:
-                return f"{quantidade:.1f} ml"
+                return f"{quantidade:.0f} ml"
         #UNIDADE
         else:
             return quantidade
