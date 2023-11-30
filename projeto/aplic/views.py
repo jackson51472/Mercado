@@ -58,7 +58,7 @@ def cadastro (request):
         cliente = Cliente.objects.filter(cpf=cpf).first()
 
         if cliente:
-            return HttpResponse("Já existe usuario com esse cpf")
+            return "/index.html"
         
         # Primeiro cria o User com os atributos username e password.
         # Caso seu User tenha e-mail basta apenas criar "email=request.POST.get("email")",
@@ -70,9 +70,8 @@ def cadastro (request):
         # Caso não esteja criado basta ir em models e ver oque foi feito
         cliente = Cliente.objects.create(nome=nome, cpf=cpf, user=user)
         cliente.save()
-
-        return HttpResponse("Cadastrado")
-
+        
+        return redirect('http://127.0.0.1:8000/')
 
 class IndexView(TemplateView):
     template_name = 'index.html'
