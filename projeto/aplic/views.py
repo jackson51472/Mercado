@@ -35,8 +35,8 @@ def cliente_login(request):
 
         # Se cliente não tiver autenticado ira retornar None e não ira logar
         if cliente is not None:         
-            login(request, cliente)
-            return redirect('/index')
+            x, y =redirect('/index'), login(request, cliente)
+            return x, y
         
        
        
