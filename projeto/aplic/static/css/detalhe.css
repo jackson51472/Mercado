@@ -1,0 +1,39 @@
+.product-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px;
+}
+
+.product-details {
+    flex: 1;
+    max-width: 600px;
+    text-align: left; /* Alinha o texto à direita */
+}
+
+.product-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.product-info {
+    margin-top: 10px;
+}
+
+.product-header {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.btn-comprar {
+    margin-top: 20px;
+}
+
+.product-image {
+    flex: 1;
+    margin-left: 20px;
+    margin-top: 20px;
+    z-index: 1; /* Adicione um z-index maior */
+  }
+  

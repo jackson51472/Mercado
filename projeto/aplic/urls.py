@@ -7,9 +7,8 @@ from aplic.forms import UserLoginForm
 
 urlpatterns = [
     path("", IndexView.as_view(), name="index"),
-   path('buscar_produtos/', buscar_produtos, name='buscar_produtos'),
-    path("detalhes/<int:id>",DetalhesProdutoView.as_view(), name="detalhe_produto"),
-    #path("login/", cliente_login, name="login"),
+    path('buscar_produtos/', buscar_produtos, name='buscar_produtos'),
+    path("<int:id>", DetalhesProdutoView.as_view(), name="detalhe_produto"),
     path('login/', views.LoginView.as_view(template_name="login.html", authentication_form=UserLoginForm), name='login'),
     path("cadastro/", cadastro, name="cadastro")
 ]
