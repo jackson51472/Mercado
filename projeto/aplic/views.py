@@ -1,13 +1,15 @@
 from django.shortcuts import render
 from django.views.generic import ListView
 from typing import Any
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views import View
 from django.views.generic import TemplateView
 from aplic.models import Produto, Cliente, User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
+
 
 def buscar_produtos(request):
     termo_de_busca = request.GET.get('search')
@@ -94,4 +96,9 @@ class DetalhesProdutoView(ListView):
         id = self.kwargs['id']
         context['produto'] = Produto.objects.filter(id=id).first
         return context
+    
+@login_required
+def sair(request):
+    logout(request)
+    return HttpResponseRedirect('/login')
 
