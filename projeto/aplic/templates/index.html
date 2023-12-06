@@ -17,7 +17,7 @@
     <div class="container">
       <h1> Produtos</h1>
       <div class="row">
-        {% for produto in produtos %}
+      {% for produto in produtos %}
 
         <div class="card-text col-md-4">
           <a href="{% url 'detalhe_produto' id=produto.id %}">
